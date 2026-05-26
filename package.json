@@ -13,6 +13,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "astro": "^6.3.7"
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.7",
+    "daisyui": "^5.5.20",
+    "tailwindcss": "^4.3.0"
   }
 }
