@@ -6,35 +6,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <div class="flex justify-between ...">
-        <div class="order-1 ...">
+        <div class="order-1 my-8 px-8 content-center">
             <p>Είσαι στο {title} logo</p>
         </div>
-        <div class="order-2 ...">
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Posts</a>
-                <a href="#">Contact</a>
+        <div class="order-2 my-8 content-center">
+            <nav class="bg-stone-200 dark:bg-stone-800 shadow-xl/30 px-8 py-8 rounded-full ">
+                <div class="flex gap-x-16 px-8 antialiased md:subpixel-antialiased font-medium">
+                <a href="#" 
+                class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                >Home
+                </a>
+                <a href="#" 
+                class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out">
+                    Clothes
+                </a>
+                <a href="#" class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out">Contact</a>
+                </div>            
             </nav>
         </div>
-        <div class="order-3 ...">
+        <div class="order-3 my-8 px-8 content-center">
                 <button id="theme-btn" class="btn btn-outline btn-sm">
                     🌙 Dark Mode
                 </button> 
         </div>
     </div>
-    <body>
-
-  </body>
 
   <script>
         const themeBtn = document.getElementById('theme-btn');
         const htmlElement = document.documentElement;
 
         themeBtn?.addEventListener('click', () => {
-            // Get the current theme
             const currentTheme = htmlElement.getAttribute('data-theme');
             
-            // Switch it
             if (currentTheme === 'light') {
                 htmlElement.setAttribute('data-theme', 'dark');
                 themeBtn.textContent = '☀️ Light Mode';
