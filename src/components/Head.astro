@@ -8,30 +8,33 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <div class="flex justify-between ...">
         <div class="order-1 my-8 px-8 content-center">
-            <p>{title} logo</p>
+            <p>{title}</p>
         </div>
         <div class="order-2 my-8 content-center">
             <nav class="bg-stone-200 dark:bg-stone-800 shadow-xl/30 px-8 py-8 rounded-full">
                 <div class="flex gap-x-16 px-8 antialiased md:subpixel-antialiased font-medium">
                     <a href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                        data-i18n="Home"
                         >Home
                     </a>
                     <a
                         href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
-                    >
+                         data-i18n="Clothes"
+                        >
                         Clothes
                     </a>
                     <a
                         href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                        data-i18n="Contact"
                         >Contact</a
                     >
                 </div>
             </nav>
         </div>
-        <div class="order-3 my-8 px-8 content-center">
+        <div class="order-3 my-8 px-8 content-center flex items-center gap-2">
             <label class="swap swap-rotate btn btn-ghost btn-circle">
                 <input type="checkbox" class="theme-controller" id="daisy-theme-toggle" />
 
@@ -56,6 +59,10 @@ const { title } = Astro.props;
                 </svg>
                 <span class="sr-only">Toggle dark or light mode</span>
             </label>
+            <button id="lang-cycle-btn" class="btn btn-ghost btn-circle font-bold text-sm" aria-label="Change language">
+    <!-- This text container will cycle automatically via JavaScript -->
+    <span id="lang-label">EN</span>
+  </button>
         </div>
     </div>
 </head>
@@ -88,5 +95,61 @@ const { title } = Astro.props;
     };
 
     setupToggle();
+const languages = ['EN', 'GR', 'CN'];
+  let currentLangIndex = languages.indexOf(localStorage.getItem('lang')) || 0;
+  if (currentLangIndex === -1) currentLangIndex = 0;
+
+  const langBtn = document.getElementById('lang-cycle-btn');
+  const langLabel = document.getElementById('lang-label');
+  
+  // Storage for our fetched dictionary values
+  let translations = {}; 
+
+  // 1. Core function to update data-i18n target strings on screen
+  const translatePage = (langCode) => {
+    // We convert 'EN'/'GR'/'CN' to lowercase 'en'/'gr'/'cn' to match your JSON keys safely
+    const key = langCode.toLowerCase(); 
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(element => {
+      const translationId = element.getAttribute('data-i18n');
+      if (translations[key] && translations[key][translationId]) {
+        element.textContent = translations[key][translationId];
+      }
+    });
+  };
+
+  // 2. Fetch the external locales.json configuration file from public/
+  async function loadTranslations() {
+    try {
+      const response = await fetch('/Translate.json');
+      translations = await response.json();
+      
+      // Perform translation parsing on initial boot
+      translatePage(languages[currentLangIndex]);
+    } catch (error) {
+      console.error("Could not load public/locales.json file:", error);
+    }
+  }
+
+  // Set the initial raw text state inside the text bubble wrapper immediately
+  if (langLabel) langLabel.textContent = languages[currentLangIndex];
+  
+  // Kick off the network request asynchronously
+  loadTranslations();
+
+  // 3. Click handler aligned explicitly with your iteration logic
+  langBtn?.addEventListener('click', () => {
+    currentLangIndex = (currentLangIndex + 1) % languages.length;
+    const newLang = languages[currentLangIndex];
+    
+    if (langLabel) langLabel.textContent = newLang;
+    
+    // Perform screen string translations
+    translatePage(newLang);
+    
+    // Save state preference choice securely inside the browser storage cluster
+    localStorage.setItem('lang', newLang);
+  });
 
 </script>

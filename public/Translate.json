@@ -1,0 +1,17 @@
+{
+  "en": {
+    "Home": "Home",
+    "Clothes": "Clothes",
+    "Contact": "Contact"
+  },
+  "gr": {
+    "Home": "Σπίτι",
+    "Clothes": "Ρούχα",
+    "Contact": "Επικοινωνία"
+  },
+  "cn": {
+    "Home": "家",
+    "Clothes": "衣服",
+    "Contact" : "接触"
+  }
+}
