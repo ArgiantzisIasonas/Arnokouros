@@ -1,21 +1,33 @@
 ---
 import "../styles/global.css";
-const { title , subTitle , date} = Astro.props;
+const { title, subTitle, date } = Astro.props;
 ---
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <div class="flex justify-between ...">
-        <div class="order-1 my-8 px-8 content-center">
-            <p>{title}</p>
-            <p>{subTitle}</p>
-            <p>{date}</p>
+        <div class="flex flex-col gap-2 order-1 my-8 px-8">
+            <p class="text-yellow-600 text-2xl font-stretch-150% font-bold underline decoration-yellow-600 decoration-2 underline-offset-4">
+                {title}
+            </p>
+            <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2 text-sm text-gray-600"
+            >
+                <span class="font-semibold leading-6 dark:text-white" data-i18n="subTitle">{subTitle}</span>
+                <span class="hidden sm:inline" aria-hidden="true">•</span>
+                <span class=" dark:text-white">{date}</span>
+            </div>
         </div>
         <div class="order-2 my-8 content-center">
-            <nav class="bg-stone-200 dark:bg-stone-800 shadow-xl/30 px-8 py-8 rounded-full">
-                <div class="flex gap-x-16 px-8 antialiased md:subpixel-antialiased font-medium">
-                    <a href="#"
+            <nav
+                class="bg-stone-200 dark:bg-stone-800 shadow-xl/30 px-8 py-8 rounded-full"
+            >
+                <div
+                    class="flex gap-x-16 px-8 antialiased md:subpixel-antialiased font-medium"
+                >
+                    <a
+                        href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
                         data-i18n="Home"
                         >Home
@@ -23,22 +35,25 @@ const { title , subTitle , date} = Astro.props;
                     <a
                         href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
-                         data-i18n="Clothes"
-                        >
+                        data-i18n="Clothes"
+                    >
                         Clothes
                     </a>
                     <a
                         href="#"
                         class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
-                        data-i18n="Contact"
-                        >Contact</a
+                        data-i18n="Contact">Contact</a
                     >
                 </div>
             </nav>
         </div>
         <div class="order-3 my-8 px-8 content-center flex items-center gap-2">
             <label class="swap swap-rotate btn btn-ghost btn-circle">
-                <input type="checkbox" class="theme-controller" id="daisy-theme-toggle" />
+                <input
+                    type="checkbox"
+                    class="theme-controller"
+                    id="daisy-theme-toggle"
+                />
 
                 <svg
                     class="swap-on fill-current w-6 h-6"
@@ -61,15 +76,22 @@ const { title , subTitle , date} = Astro.props;
                 </svg>
                 <span class="sr-only">Toggle dark or light mode</span>
             </label>
-            <button id="lang-cycle-btn" class="btn btn-ghost btn-circle font-bold text-sm" aria-label="Change language">
-    <span id="lang-label">EN</span>
-  </button>
+            <button
+                id="lang-cycle-btn"
+                class="btn btn-ghost btn-circle font-bold text-sm"
+                aria-label="Change language"
+            >
+                <span id="lang-label">EN</span>
+            </button>
         </div>
     </div>
 </head>
 <script is:inline>
     const getTheme = () => {
-        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
             return localStorage.getItem("theme");
         }
         return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -96,55 +118,50 @@ const { title , subTitle , date} = Astro.props;
     };
 
     setupToggle();
-const languages = ['EN', 'GR', 'CN'];
-  let currentLangIndex = languages.indexOf(localStorage.getItem('lang')) || 0;
-  if (currentLangIndex === -1) currentLangIndex = 0;
+    const languages = ["EN", "GR", "CN"];
+    let currentLangIndex = languages.indexOf(localStorage.getItem("lang")) || 0;
+    if (currentLangIndex === -1) currentLangIndex = 0;
 
-  const langBtn = document.getElementById('lang-cycle-btn');
-  const langLabel = document.getElementById('lang-label');
-  
+    const langBtn = document.getElementById("lang-cycle-btn");
+    const langLabel = document.getElementById("lang-label");
 
-  let translations = {}; 
+    let translations = {};
 
+    const translatePage = (langCode) => {
+        const key = langCode.toLowerCase();
+        const elements = document.querySelectorAll("[data-i18n]");
 
-  const translatePage = (langCode) => {
+        elements.forEach((element) => {
+            const translationId = element.getAttribute("data-i18n");
+            if (translations[key] && translations[key][translationId]) {
+                element.textContent = translations[key][translationId];
+            }
+        });
+    };
 
-    const key = langCode.toLowerCase(); 
-    const elements = document.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-      const translationId = element.getAttribute('data-i18n');
-      if (translations[key] && translations[key][translationId]) {
-        element.textContent = translations[key][translationId];
-      }
-    });
-  };
+    async function loadTranslations() {
+        try {
+            const response = await fetch("/Translate.json");
+            translations = await response.json();
 
-
-  async function loadTranslations() {
-    try {
-      const response = await fetch('/Translate.json');
-      translations = await response.json();
- 
-      translatePage(languages[currentLangIndex]);
-    } catch (error) {
-      console.error("Could not load public/locales.json file:", error);
+            translatePage(languages[currentLangIndex]);
+        } catch (error) {
+            console.error("Could not load public/locales.json file:", error);
+        }
     }
-  }
 
-  if (langLabel) langLabel.textContent = languages[currentLangIndex];
+    if (langLabel) langLabel.textContent = languages[currentLangIndex];
 
-  loadTranslations();
+    loadTranslations();
 
-  langBtn?.addEventListener('click', () => {
-    currentLangIndex = (currentLangIndex + 1) % languages.length;
-    const newLang = languages[currentLangIndex];
-    
-    if (langLabel) langLabel.textContent = newLang;
-    
-    translatePage(newLang);
-    
-    localStorage.setItem('lang', newLang);
-  });
+    langBtn?.addEventListener("click", () => {
+        currentLangIndex = (currentLangIndex + 1) % languages.length;
+        const newLang = languages[currentLangIndex];
 
+        if (langLabel) langLabel.textContent = newLang;
+
+        translatePage(newLang);
+
+        localStorage.setItem("lang", newLang);
+    });
 </script>

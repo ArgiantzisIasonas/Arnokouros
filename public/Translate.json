@@ -1,5 +1,6 @@
 {
   "en": {
+    "subTitle":"MEN'S CLOTHING",
     "Home": "Home",
     "Clothes": "Clothes",
     "Contact": "Contact",
@@ -14,6 +15,7 @@
     "Footer_Cookie" : "Cookie policy"
   },
   "gr": {
+     "subTitle":"ΑΝΔΡΙΚΗ ΕΝΔΥΣΗ",
     "Home": "Σπίτι",
     "Clothes": "Ρούχα",
     "Contact": "Επικοινωνία",
@@ -28,6 +30,7 @@
     "Footer_Cookie":"Πολιτική Cookies"
   },
   "cn": {
+     "subTitle":"男装",
     "Home": "家",
     "Clothes": "衣服",
     "Contact" : "接触",
