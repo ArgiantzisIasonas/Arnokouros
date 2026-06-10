@@ -7,7 +7,61 @@ const { title, subTitle, date } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <div class="flex justify-evenly">
-        <div class="order-2 content-center md:hidden">Hello</div>
+        <div class="order-2 content-center md:hidden">
+            <div class="drawer">
+                <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
+                <div class="drawer-content">
+                    <!-- Page content here -->
+                    <label
+                        for="my-drawer-1"
+                        class="btn btn-circle swap swap-rotate"
+                    >
+                        <!-- this hidden checkbox controls the state -->
+                        <input type="checkbox" />
+
+                        <!-- hamburger icon -->
+                        <svg
+                            class="swap-off fill-current"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 512 512"
+                        >
+                            <path
+                                d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+                            ></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="drawer-side">
+                    <label
+                        for="my-drawer-1"
+                        aria-label="close sidebar"
+                        class="drawer-overlay"></label>
+                    <ul class="menu bg-base-200 min-h-full w-80 p-4">
+                        <!-- Sidebar content here -->
+                        <li> <a
+                        href="/"
+                        class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                        data-i18n="Home"
+                        >Home
+                    </a>
+                </li>
+                        <li><a
+                        href="/Clothes"
+                        class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                        data-i18n="Clothes"
+                    >
+                        Clothes
+                    </a></li>
+                       <li><a
+                         href="/Contact"
+                        class="font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transform hover:scale-105 transition-all duration-300 ease-in-out"
+                        data-i18n="Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="flex flex-col gap-2 order-1 my-8 px-8">
             <p
                 class="font-serif text-yellow-600 text-2xl font-stretch-150% font-bold underline decoration-yellow-600 decoration-2 underline-offset-4"
@@ -133,6 +187,7 @@ const { title, subTitle, date } = Astro.props;
         </div>
     </div>
 </head>
+
 <script is:inline>
     const getTheme = () => {
         if (
@@ -154,7 +209,6 @@ const { title, subTitle, date } = Astro.props;
         const toggles = document.querySelectorAll(".dark-theme-toggle");
 
         toggles.forEach((toggle) => {
-
             toggle.checked = currentTheme === "light";
 
             toggle.addEventListener("change", (e) => {
