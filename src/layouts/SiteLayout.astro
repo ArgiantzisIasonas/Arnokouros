@@ -2,17 +2,19 @@
 import Head from "../components/Head.astro";
 import Foorer from "../components/Footer.astro";
 
-let {title} = Astro.props;
+let {title , subTitle ,date} = Astro.props;
 
-const changeAction = (content:string) => {
+const changeAction = (content:string , SUBT:string , d:string) => {
      title=content
+     subTitle=SUBT
+     date = d
 }
 ---
-<html lang="en">
-    <Head title={title}/>
+<html lang="en" class="scroll-smooth">
+    <Head title={title} subTitle={subTitle} date={date}/>
 <body>
     <article>
-      <slot /> <!-- your content is injected here -->
+      <slot />
     </article>
     </body>
     <Foorer/>
