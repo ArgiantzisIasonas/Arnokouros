@@ -1,0 +1,49 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout title="ΑΡΝΟΚΟΥΡΟΣ" subTitle="ΑΝΔΡΙΚΗ ΕΝΔΥΣΗ" date="1973">
+  <div class="min-h-[80vh] min-h-screen flex items-center justify-center bg-base-200 px-4 py-16 text-base-content">
+    <div class="max-w-md w-full text-center bg-base-100 p-8 sm:p-12 rounded-2xl shadow-xl border border-base-300 relative overflow-hidden group">
+      
+      <!-- Subtle background design element -->
+      <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-xl transition-all group-hover:bg-primary/10 duration-500"></div>
+
+      <!-- Large Elegant 404 Graphic -->
+      <div class="relative inline-block mb-6">
+        <h1 class="text-9xl font-black text-color-red tracking-tighter text-base-300 text-error select-none">
+          404
+        </h1>
+      </div>
+
+      <h2 class="text-2xl font-black tracking-tight uppercase mb-3">
+        Η σελιδα δεν υποστηριζεται
+      </h2>
+      <p class="text-sm opacity-70 mb-8 leading-relaxed">
+        Η σελίδα που προσπαθείτε να προσπελάσετε έχει μετακινηθεί, διαγραφεί ή δεν υπήρξε ποτέ. 
+      </p>
+      <div class="mt-8 pt-6 border-t border-base-300 flex items-center justify-center gap-2 text-xs opacity-50 font-medium">
+        <span class="loading loading-spinner loading-xs text-primary"></span>
+        <span>Αυτόματη μεταφορά σε <span id="countdown" class="font-bold text-primary">8</span> δευτερόλεπτα...</span>
+      </div>
+
+    </div>
+  </div>
+</SiteLayout>
+
+<script>
+  let secondsLeft = 8;
+  const countdownEl = document.getElementById('countdown');
+
+  if (countdownEl) {
+    const timer = setInterval(() => {
+      secondsLeft--;
+      countdownEl.textContent = String(secondsLeft);
+      
+      if (secondsLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = '/'; 
+      }
+    }, 1000);
+  }
+</script>

@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "path": "/tshirts/DarkBlueFoldedShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "DarkBlue",
+    "sizes": ["SM", "MD", "LG"],
+    "tags": ["New", "Cotton"]
+    
+  },
+  {
+    "id": 1,
+    "path": "/tshirts/PinkFoldedShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "#f04a4a",
+    "sizes": ["SM", "MD", "LG"],
+    "tags": ["New", "Cotton"]
+  },
+  {
+    "id": 1,
+    "path": "/tshirts/YellowFoldedShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "#f2e146",
+    "sizes": ["SM", "MD", "LG"],
+    "tags": ["New", "Cotton"]
+  },
+  {
+     "id": 2,
+    "path": "/tshirts/DarkBlueShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "Blue",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New", "Cotton"]
+  },
+   {
+     "id": 2,
+    "path": "/tshirts/LightBlueShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "#5aa3f2",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New", "Cotton" ]
+  },
+   {
+     "id": 3,
+    "path": "/tshirts/RedShirt.jpeg",
+    "type": "tshirts",
+    "type_color": "#e0095c",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["sale", "Cotton" ],
+    "discount_percent": 50
+    
+  }
+]

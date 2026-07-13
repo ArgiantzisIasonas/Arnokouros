@@ -1,0 +1,198 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+import clothesData from "../../../public/data/clothes.json";
+
+export async function getStaticPaths() {
+  const categories = [...new Set(clothesData.map(item => item.type.toLowerCase()))];
+  return categories.map(category => {
+
+    const categoryProducts = clothesData.filter(item => item.type.toLowerCase() === category);
+    return {
+      params: { type: category },
+      props: { products: categoryProducts }
+    };
+  });
+}
+
+const { type } = Astro.params;
+const { products } = Astro.props;
+---
+
+<SiteLayout title="ΑΡΝΟΚΟΥΡΟΣ" subTitle="ΑΝΔΡΙΚΗ ΕΝΔΥΣΗ" date="1973">
+  <div class="bg-base-200 min-h-screen p-4 sm:p-8 text-base-content transition-colors duration-200">
+    <div class="max-w-7xl mx-auto">
+      
+      <header class="flex flex-col items-center justify-center gap-6 mb-12 border-b border-base-300 pb-8">
+        <h1 class="text-4xl font-black tracking-tight uppercase text-center">
+          Κατηγορία: <span class="text-primary">{type}</span>
+        </h1>
+
+        <div class="join bg-base-100 shadow-md border border-base-300">
+          <button class="btn btn-sm sm:btn-md join-item filter-btn btn-active" data-filter="all">Όλα</button>
+          <button class="btn btn-sm sm:btn-md join-item filter-btn" data-filter="new">New In</button>
+          <button class="btn btn-sm sm:btn-md join-item filter-btn" data-filter="sale">Προσφορές</button>
+        </div>
+      </header>
+
+
+      <main id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  
+      </main>
+      
+    </div>
+  </div>
+</SiteLayout>
+
+<script define:vars={{ products, type }}>
+ 
+  const groupedProducts = {};
+  products.forEach(item => {
+    if (!groupedProducts[item.id]) {
+      groupedProducts[item.id] = [];
+    }
+    groupedProducts[item.id].push(item);
+  });
+
+  const gridEl = document.getElementById('product-grid');
+  let currentFilter = 'all';
+
+  function renderGrid() {
+    gridEl.innerHTML = '';
+
+    Object.keys(groupedProducts).forEach(id => {
+      const variants = groupedProducts[id];
+
+      const activeVariant = variants[0];
+
+      const matchesFilter = currentFilter === 'all' || variants.some(v => 
+        v.tags?.map(t => t.toLowerCase()).includes(currentFilter)
+      );
+      if (!matchesFilter) return;
+
+      const card = document.createElement('div');
+      card.className = "card bg-base-100 shadow-xl hover:shadow-2xl border border-base-300 transition-all duration-300 overflow-hidden group flex flex-col h-full";
+      card.id = `product-card-${id}`;
+
+      card.innerHTML = `
+    
+        <figure class="relative aspect-[3/4] w-full bg-neutral overflow-hidden">
+          <img 
+            id="img-${id}"
+            src="${activeVariant.path}" 
+            alt="Product Image" 
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          
+          <!-- Top Right Metadata Tags (Extra 2 Tags) -->
+          <div class="absolute top-3 right-3 flex flex-col gap-1 z-10">
+           ${(activeVariant.tags || []).slice(0, 2).map(tag => {
+    const lowerTag = tag.toLowerCase();
+    
+    let badgeClass = 'badge-ghost'; 
+    let displayLabel = tag;       
+    
+    if (lowerTag === 'new') {
+      badgeClass = 'badge-primary';
+      displayLabel = 'NEW IN';
+    } else if (lowerTag === 'sale') {
+      badgeClass = 'badge-error font-black text-white animate-pulse';
+      
+      displayLabel = activeVariant.discount_percent 
+        ? `-${activeVariant.discount_percent}%` 
+        : 'SALE';
+    } else if (lowerTag === 'cotton') {
+      badgeClass = 'badge-info';
+    }
+
+    return `
+      <span class="badge ${badgeClass} font-bold text-xs shadow-sm py-2.5 px-3">
+        ${displayLabel}
+      </span>
+    `;
+  }).join('')}
+          </div>
+
+          <!-- Bottom Left Size Badges -->
+          <div class="absolute bottom-3 left-3 flex flex-wrap gap-1 max-w-[80%] z-10 bg-black/40 backdrop-blur-md p-1.5 rounded-lg border border-white/10">
+            ${['XS', 'SM', 'MD', 'LG', 'XL'].map(size => {
+              const available = activeVariant.sizes.includes(size);
+              return `
+                <span class="px-1.5 py-0.5 text-[10px] font-black rounded tracking-wide ${
+                  available 
+                    ? 'bg-white text-black font-extrabold' 
+                    : 'bg-white/20 text-white/40 line-through'
+                }">
+                  ${size}
+                </span>
+              `;
+            }).join('')}
+          </div>
+        </figure>
+
+        <!-- Product Footer Details -->
+        <div class="p-4 flex flex-col flex-grow justify-between gap-3 bg-base-100">
+          <div>
+            <div class="flex justify-between items-start mb-1">
+              <h2 class="font-bold text-lg tracking-tight capitalize group-hover:text-primary transition-colors">
+                ${type.slice(0, -1)} ΑΡΝΟΚΟΥΡΟΣ
+              </h2>
+            </div>
+            <p id="color-name-${id}" class="text-xs opacity-60 font-semibold mb-3">
+              Χρώμα: ${activeVariant.type_color}
+            </p>
+          </div>
+
+          <!-- Color Swatches Row (if multiple variants exist) -->
+          ${variants.length > 1 ? `
+            <div class="flex items-center gap-2 border-t border-base-200 pt-3">
+              <span class="text-[11px] font-bold uppercase opacity-50 tracking-wider">Αλλαγή:</span>
+              <div class="flex flex-wrap gap-1.5">
+                ${variants.map((v, idx) => `
+                  <button 
+                    class="w-5 h-5 rounded-full border-2 ${idx === 0 ? 'border-primary scale-110' : 'border-base-300 hover:scale-105'} transition-all cursor-pointer shadow-sm"
+                    style="background-color: ${v.type_color.toLowerCase() === 'darkblue' ? '#1e3a8a' : v.type_color.toLowerCase()};"
+                    title="${v.type_color}"
+                    data-variant-idx="${idx}"
+                  ></button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+
+      const swatchButtons = card.querySelectorAll('[data-variant-idx]');
+      swatchButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetIndex = parseInt(btn.getAttribute('data-variant-idx'));
+          const selectedVariant = variants[targetIndex];
+
+          card.querySelector(`#img-${id}`).src = selectedVariant.path;
+          card.querySelector(`#color-name-${id}`).textContent = `Χρώμα: ${selectedVariant.type_color}`;
+
+   
+          swatchButtons.forEach(b => b.className = "w-5 h-5 rounded-full border-2 border-base-300 hover:scale-105 transition-all cursor-pointer shadow-sm");
+          btn.className = "w-5 h-5 rounded-full border-2 border-primary scale-110 transition-all cursor-pointer shadow-sm";
+        });
+      });
+
+      gridEl.appendChild(card);
+    });
+  }
+
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('btn-active'));
+      btn.classList.add('btn-active');
+      currentFilter = btn.getAttribute('data-filter');
+      renderGrid();
+    });
+  });
+
+  renderGrid();
+</script>
