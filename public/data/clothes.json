@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 21,
     "path": "/tshirts/DarkBlueFoldedShirt.jpeg",
     "type": "tshirts",
     "type_color": "DarkBlue",
@@ -9,7 +9,7 @@
     
   },
   {
-    "id": 1,
+    "id": 21,
     "path": "/tshirts/PinkFoldedShirt.jpeg",
     "type": "tshirts",
     "type_color": "#f04a4a",
@@ -17,7 +17,7 @@
     "tags": ["New", "Cotton"]
   },
   {
-    "id": 1,
+    "id": 21,
     "path": "/tshirts/YellowFoldedShirt.jpeg",
     "type": "tshirts",
     "type_color": "#f2e146",
@@ -25,7 +25,7 @@
     "tags": ["New", "Cotton"]
   },
   {
-     "id": 2,
+     "id": 22,
     "path": "/tshirts/DarkBlueShirt.jpeg",
     "type": "tshirts",
     "type_color": "Blue",
@@ -33,7 +33,7 @@
     "tags": ["New", "Cotton"]
   },
    {
-     "id": 2,
+     "id": 22,
     "path": "/tshirts/LightBlueShirt.jpeg",
     "type": "tshirts",
     "type_color": "#5aa3f2",
@@ -41,7 +41,7 @@
     "tags": ["New", "Cotton" ]
   },
    {
-     "id": 3,
+     "id": 23,
     "path": "/tshirts/RedShirt.jpeg",
     "type": "tshirts",
     "type_color": "#e0095c",
@@ -49,5 +49,87 @@
     "tags": ["sale", "Cotton" ],
     "discount_percent": 50
     
+  },
+   {
+     "id": 71,
+    "path": "/suits/SuitBlack.jpeg",
+    "type": "suits",
+    "type_color": "#3b383a",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New" ]
+    
+  },
+   {
+     "id": 72,
+    "path": "/suits/SuitBrown.jpeg",
+    "type": "suits",
+    "type_color": "#8c795b",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 73,
+    "path": "/suits/SuitDarkBlack.jpeg",
+    "type": "suits",
+    "type_color": "#292826",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 74,
+    "path": "/suits/SuitDarkBlue.jpeg",
+    "type": "suits",
+    "type_color": "#060133",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New" ]
+    
+  },
+   {
+     "id": 75,
+    "path": "/suits/SuitDarkBlue2.jpeg",
+    "type": "suits",
+    "type_color": "#0e0459",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 76,
+    "path": "/suits/SuitGray.jpeg",
+    "type": "suits",
+    "type_color": "#d6d5de",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 77,
+    "path": "/suits/SuitLightBrown.jpeg",
+    "type": "suits",
+    "type_color": "#e8c772",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 77,
+    "path": "/suits/SuitLightBrown2.jpeg",
+    "type": "suits",
+    "type_color": "#e8c772",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
+  },
+   {
+     "id": 78,
+    "path": "/suits/SuitWhite.jpeg",
+    "type": "suits",
+    "type_color": "#f0eadd",
+    "sizes": ["SM", "MD", "LG","XL"],
+    "tags": ["New"]
+    
   }
+
 ]
