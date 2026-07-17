@@ -114,20 +114,17 @@ const { products } = Astro.props;
   }).join('')}
           </div>
 
-          <!-- Bottom Left Size Badges -->
-          <div class="absolute bottom-3 left-3 flex flex-wrap gap-1 max-w-[80%] z-10 bg-black/40 backdrop-blur-md p-1.5 rounded-lg border border-white/10">
-            ${['XS', 'SM', 'MD', 'LG', 'XL'].map(size => {
-              const available = activeVariant.sizes.includes(size);
-              return `
-                <span class="px-1.5 py-0.5 text-[10px] font-black rounded tracking-wide ${
-                  available 
-                    ? 'bg-white text-black font-extrabold' 
-                    : 'bg-white/20 text-white/40 line-through'
-                }">
-                  ${size}
-                </span>
-              `;
-            }).join('')}
+         <div class="absolute bottom-3 left-3 flex items-center gap-1.5 z-10 bg-black/50 backdrop-blur-md px-2 py-1 rounded-md border border-white/10">
+            <span class="text-[9px] uppercase tracking-wider text-white/60 font-bold">Sizes:</span>
+            <span class="px-2 py-0.5 text-[10px] font-black rounded bg-white text-black tracking-wide font-extrabold whitespace-nowrap">
+              ${
+                activeVariant.sizes && activeVariant.sizes.length > 0
+                  ? activeVariant.sizes.length > 1 
+                    ? `${activeVariant.sizes[0]} - ${activeVariant.sizes[activeVariant.sizes.length - 1]}`
+                    : activeVariant.sizes[0]
+                  : 'O/S'
+              }
+            </span>
           </div>
         </figure>
 
