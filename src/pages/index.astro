@@ -2,6 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 const images = ["/P1.png", "/P2.png", "/P3.png", "/P4.png", "/P5.png"];
 import "../css/HomePage.css";
+// ContactModal.astro
 ---
 
 <SiteLayout title="ΑΡΝΟΚΟΥΡΟΣ" subTitle="ΑΝΔΡΙΚΗ ΕΝΔΥΣΗ" date="1973">
@@ -72,6 +73,7 @@ import "../css/HomePage.css";
               dark:[--aura-color-1:#374151] dark:[--aura-color-2:#111827]"
           >
             <button
+            id="open-contact-modal"
               class="btn btn-md md:btn-lg font-serif antialiased md:subpixel-antialiased rounded-lg transition-all duration-200
                    bg-gray-100 text-gray-900 border-gray-300
                    dark:bg-black dark:text-white dark:border-gray-700 dark:btn-outline
@@ -84,7 +86,6 @@ import "../css/HomePage.css";
       </div>
     </div>
   </div>
-
   <div class="flex justify-center p-8">
     <h1
       class="text-2xl font-bold underline md:text-5xl font-bold underline"
@@ -160,4 +161,92 @@ import "../css/HomePage.css";
       </div>
     </div>
   </div>
+
+
+ <dialog id="contact_modal" class="modal sm:modal-middle backdrop-blur-sm">
+  <div class="modal-box dark:bg-zinc-900 dark:text-white border dark:border-zinc-800 max-w-md">
+    <h3 class="font-serif font-bold text-xl mb-1" data-i18n="ModalTitle"></h3>
+    <p class="text-xs text-gray-500 dark:text-gray-400 mb-5" data-i18n="SubModal"></p>
+
+    <div class="flex flex-col gap-3">
+      <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-zinc-800/60 border border-gray-200 dark:border-zinc-700">
+        <div>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-primary" data-i18n="mobile"></span>
+          <span class="text-sm font-medium font-mono dark:text-gray-200">+30 694 362 6607</span>
+        </div>
+        <div class="flex gap-1.5">
+          <a href="tel:+0306943626607" class="btn btn-xs sm:btn-sm btn-primary" data-i18n="DialPhone">
+          </a>
+          <button class="copy-btn btn btn-xs sm:btn-sm btn-outline" data-phone="+0306943626607" data-i18n="CopyPhone">
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-zinc-800/60 border border-gray-200 dark:border-zinc-700">
+        <div>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400" data-i18n="Office"></span>
+          <span class="text-sm font-medium font-mono dark:text-gray-200">+30 210 324 2782</span>
+        </div>
+        <div class="flex gap-1.5">
+          <a href="tel:+0302103242782" class="btn btn-xs sm:btn-sm btn-primary" data-i18n="DialPhone">
+          </a>
+          <button class="copy-btn btn btn-xs sm:btn-sm btn-outline" data-phone="+0302103242782" data-i18n="CopyPhone">
+  
+          </button>
+        </div>
+      </div>
+
+
+      <div class="divider my-1 text-xs text-gray-400" data-i18n="OR"></div>
+
+  
+      <button class="btn btn-outline dark:btn-accent w-full gap-2 text-sm" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+          <p data-i18n="EmailContact"></p>
+      </button>
+   
+    </div>
+
+    <div class="modal-action mt-5">
+      <form method="dialog">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        <button class="btn btn-sm" data-i18n="CloseModal"></button>
+      </form>
+    </div>
+  </div>
+
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
 </SiteLayout>
+<script>
+ const modal = document.getElementById('contact_modal') as HTMLDialogElement;
+  const openBtn = document.getElementById('open-contact-modal');
+  const copyButtons = document.querySelectorAll('.copy-btn');
+
+  // Open Modal
+  openBtn?.addEventListener('click', () => {
+    modal?.showModal();
+  });
+
+  // Handle Clipboard Copy
+  copyButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const numberToCopy = button.getAttribute('data-phone');
+      if (!numberToCopy) return;
+
+      navigator.clipboard.writeText(numberToCopy).then(() => {
+        button.classList.add('btn-success');
+        
+        setTimeout(() => {
+          button.classList.remove('btn-success');
+        }, 1800);
+      });
+    });
+  });
+</script>
