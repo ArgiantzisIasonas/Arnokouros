@@ -28,9 +28,19 @@
     "Title2":"About Us",
 
      "MainInfo" : "Since 1973,our business serves men's clothing consistently,experience and personal care. Starting from Stadiou and continuing up today on Panepisthmiou 71,we keep all this years beside the male who seeks quality,proper fit and timeless style.In our store you will find complete men's clothing proposals, such as suit,jackets,trousers,shirts and accessories, with emphasis in classic men's clothing, but also with modern and fashionable options.What sets us apart is that we keep the art of custom sewing alive.We undertake the creation of suits,jackets,trousers made to your measurements,with cautious and precision,fabric selection and application tailored to the needs of each customer.With respect for tradition and good menswear,we continue to present solutions for every situation:from everydays looks to professional presence and your most special moments.",
-      "ContactBtn2" : "Contact Us",
+      "ContactBtn2" : "Contact Info",
       "LocationInfo":"Location Information",
-      "Location2":"Where are we?"
+      "Location2":"Where are we?",
+
+      "ModalTitle":"Contact Info",
+      "SubModal":"Choose a line to call/copy to clipboard , or contatc with us by Email",
+      "mobile":"Mobile",
+      "Office":"Office Phone",
+      "DialPhone":"Dial",
+      "CopyPhone":"Copy",
+      "OR":"OR",
+      "EmailContact":"Contact via Email",
+      "CloseModal":"Close"
     },
   "gr": {
      "subTitle":"ΑΝΔΡΙΚΗ ΕΝΔΥΣΗ",
@@ -63,9 +73,19 @@
     "Title2":"Σχετικά με εμάς",
 
      "MainInfo":"Από το 1973, η επιχείρησή μας υπηρετεί το ανδρικό ένδυμα με συνέπεια, εμπειρία και προσωπική φροντίδα. Ξεκινώντας από τη Σταδίου και συνεχίζοντας σήμερα στην Πανεπιστημίου 71, παραμένουμε όλα αυτά τα χρόνια δίπλα στον άνδρα που αναζητά ποιότητα, σωστή εφαρμογή και διαχρονικό στυλ. Στο κατάστημά μας θα βρείτε ολοκληρωμένες προτάσεις ανδρικής ένδυσης, όπως κοστούμια, σακάκια, παντελόνια, πουκάμισα και αξεσουάρ, με έμφαση στο κλασικό ανδρικό ντύσιμο αλλά και με επιλογές πιο σύγχρονες και μοντέρνες. Αυτό που μας ξεχωρίζει είναι ότι διατηρούμε ζωντανή την τέχνη της ραφής κατά παραγγελία. Αναλαμβάνουμε τη δημιουργία κοστουμιών, σακακιών, παντελονιών και πουκαμίσων στα μέτρα σας, με προσοχή στη λεπτομέρεια, επιλογή υφασμάτων και εφαρμογή προσαρμοσμένη στις ανάγκες κάθε πελάτη. Με σεβασμό στην παράδοση και το καλό ανδρικό ένδυμα, συνεχίζουμε να προσφέρουμε λύσεις για κάθε περίσταση: από την καθημερινή εμφάνιση μέχρι την επαγγελματική παρουσία και τις πιο ιδιαίτερες στιγμές σας.",
-     "ContactBtn2" : "Επικοινωνήστε μας",
+     "ContactBtn2" : "Επικοινωνία",
       "LocationInfo":"Πληροφορίες τοποθεσίας",
-        "Location2":"Που είμαστε?" 
+        "Location2":"Που είμαστε?" ,
+
+         "ModalTitle":"Στοιχεία Επικοινωνίας",
+          "SubModal":"Επιλέξτε μια γραμμή για κλήση ή αντιγραφή στο πρόχειρο, ή επικοινωνήστε μαζί μας μέσω Email.",
+          "mobile":"Κινητο τηλεφωνο",
+          "Office":"Σταθερο Τηλεφωνο",
+          "DialPhone":"Κάλεσε τώρα",
+          "CopyPhone":"Αντιγραφή",
+          "OR":"Ή",
+           "EmailContact":"Επικοινωνία μέσω Email",
+           "CloseModal":"Έξοδος"
   
     },
   "cn": {
@@ -99,6 +119,16 @@
     "MainInfo":"自1973年以来,我们的业务始终如一地服务于男装市场,经验和个人护理。从Stadiou 并在今天继续 Panepisthmiou 71,这些年来，我们始终陪伴在追求品质、完美合身与经典风格的男士身边。在我们的店内，您将找到全系列的男装搭配方案，包括西装、外套、长裤、衬衫及配饰，既注重传统经典男装，同时也提供更现代、更时尚的选择。让我们脱颖而出的是，我们始终传承并弘扬着量身定制的缝纫工艺。我们致力于为您量身打造西装、外套、长裤和衬衫，注重每一个细节，提供丰富的面料选择，并根据每位客户的需求进行个性化合身调整。带着对传统与优质男装的敬意，我们继续为各种场合提供穿着方案：从日常穿搭、商务出席，到您生命中最特别的重要时刻。",
     "ContactBtn2" : "联系我们",
     "LocationInfo":"位置信息",
-      "Location2":"我们在哪里?"
+      "Location2":"我们在哪里?",
+
+      "ModalTitle":"联系方式",
+       "SubModal":"选择一条线路进行拨打或复制到剪贴板，或通过电子邮件联系我们",
+       "mobile":"手机",
+       "Office":"办公室电话号码",
+      "DialPhone":"拨号",
+      "CopyPhone":"复制",
+      "OR":"或者",
+      "EmailContact":"通过电子邮件联系",
+      "CloseModal":"关闭"
   }
 }
